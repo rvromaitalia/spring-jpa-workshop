@@ -1,8 +1,7 @@
 package se.lexicon.jpaworkshopus.repo;
 
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import se.lexicon.jpaworkshopus.model.AppUser;
+import se.lexicon.jpaworkshopus.entity.AppUser;
 
 import java.time.LocalDate;
 import java.util.List;

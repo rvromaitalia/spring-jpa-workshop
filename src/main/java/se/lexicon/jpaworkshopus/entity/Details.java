@@ -1,4 +1,4 @@
-package se.lexicon.jpaworkshopus.model;
+package se.lexicon.jpaworkshopus.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

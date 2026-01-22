@@ -1,8 +1,7 @@
 package se.lexicon.jpaworkshopus.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import se.lexicon.jpaworkshopus.model.AppUser;
-import se.lexicon.jpaworkshopus.model.Details;
+import se.lexicon.jpaworkshopus.entity.Details;
 
 import java.util.List;
 import java.util.Optional;

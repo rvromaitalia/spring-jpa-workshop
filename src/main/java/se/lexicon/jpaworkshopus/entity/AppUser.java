@@ -1,10 +1,8 @@
-package se.lexicon.jpaworkshopus.model;
+package se.lexicon.jpaworkshopus.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import java.time.LocalDate;
 
 /**
@@ -17,6 +15,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@ToString
 @Entity
 public class AppUser {
     @Id
