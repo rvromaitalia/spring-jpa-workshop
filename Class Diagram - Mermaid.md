@@ -32,7 +32,14 @@ classDiagram
         - borrower : AppUser
         - book : Book
         }
-
+        
+        class Author{
+            - id : int
+            - firstName : String
+            - lastName : String
+            - books : Book[]
+        }
+    Author "0..*" -- "0..*" Book : writes
     AppUser *-- Details
     AppUser "1" --> "1" Details : OneToOne
     AppUser "1" <-- "0..*" BookLoan : borrower, many to one

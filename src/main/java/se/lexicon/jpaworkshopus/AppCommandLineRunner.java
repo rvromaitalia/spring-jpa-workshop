@@ -52,7 +52,7 @@ public class AppCommandLineRunner implements CommandLineRunner {
         appUserRepo.save(user2);
 
         //Create some books
-        Book book1 = bookRepo.save(new Book(0, "abcd1234","java with Springboot",30, "Simon"));
+        Book book1 = bookRepo.save(new Book("abcd1234",30,"java with Springboot"));
         Book book2 = bookRepo.save(new Book("abcd456", 10,"pure Java for devops"));
 
 

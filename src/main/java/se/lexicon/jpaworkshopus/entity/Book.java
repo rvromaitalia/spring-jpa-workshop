@@ -7,13 +7,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString
 @Entity
 public class Book {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY )
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(nullable = false, unique = true)
@@ -25,8 +29,14 @@ public class Book {
     @Column(nullable = false)
     private int maxLoanDays = 20;
 
-    @Column(length = 35)
-    private String author;
+    // Book owns the relationship
+    @ManyToMany
+    @JoinTable(
+            name = "book_author",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
+    private Set<Author> authors = new HashSet<>();
 
     public Book(String isbn, int maxLoanDays, String title) {
         this.isbn = isbn;
