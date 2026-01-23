@@ -39,9 +39,11 @@ classDiagram
             - lastName : String
             - books : Book[]
         }
-    Author "0..*" -- "0..*" Book : writes
-    AppUser *-- Details
+%% Relationships
     AppUser "1" --> "1" Details : OneToOne
-    AppUser "1" <-- "0..*" BookLoan : borrower, many to one
-    Book   "1" <-- "0..*" BookLoan : book,many to one
+    AppUser "1" --> "0..*" BookLoan : bookLoans
+    BookLoan "0..*" --> "1" AppUser : borrower
+
+    BookLoan "0..*" --> "1" Book : book
+    Author "0..*" -- "0..*" Book : writes
 ````

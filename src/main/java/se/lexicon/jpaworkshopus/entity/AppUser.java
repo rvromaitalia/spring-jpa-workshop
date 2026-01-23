@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * Represents an application user in the system.
@@ -35,4 +38,27 @@ public class AppUser {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "details_id")
     private Details userDetails;
+
+    @OneToMany(mappedBy = "borrower", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BookLoan> bookLoans  =  new ArrayList<>();
+
+    public void addBookLoan(BookLoan loan){
+        if(loan == null)  return;
+
+        bookLoans.add(loan);
+        loan.setBorrower(this);
+    }
+
+    public void removeLoan(BookLoan loan) {
+        if (loan == null) return;
+
+        bookLoans.remove(loan);
+        loan.setBorrower(null);
+    }
 }
+
+
+
+
+
+
