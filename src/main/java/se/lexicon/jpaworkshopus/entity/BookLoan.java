@@ -36,4 +36,10 @@ public class BookLoan {
     @JoinColumn(name = "borrower_id", nullable = false)
     private AppUser borrower;
 
+    public void calculateDueDate(){
+        if (book == null) throw new IllegalArgumentException("Book can not be null");
+        if (loanDate == null)
+            loanDate = LocalDate.now();
+        this.dueDate=  this.loanDate.plusDays(book.getMaxLoanDays());
+    }
 }
