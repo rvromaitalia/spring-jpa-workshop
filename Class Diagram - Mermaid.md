@@ -10,9 +10,31 @@ classDiagram
     
     class AppUser{
         - id : int
-        - email : String
-        - name : String
-        - birthDate : LocalDate
+        - username : String
+        - password : String
+        - regDate : LocalDate
+        - userDetails : Details
         }
+    
+        class Book{
+        - id :int
+        - isbn : String
+        - title : String
+        - maxLoanDays : int
+        - author : String
+        }
+        
+        class BookLoan{
+        - id : int
+        - loanDate : LocalDate
+        - dueDate : LocalDate
+        - returned : Boolean
+        - borrower : AppUser
+        - book : Book
+        }
+
+    AppUser *-- Details
     AppUser "1" --> "1" Details : OneToOne
+    AppUser "1" <-- "0..*" BookLoan : borrower, many to one
+    Book   "1" <-- "0..*" BookLoan : book,many to one
 ````

@@ -40,12 +40,16 @@ public class AppCommandLineRunner implements CommandLineRunner {
     public void run(String @NonNull ... args) {
 
         //Details for the users
-        Details det1 = detailRepo.save(new Details(0,"swederom@msn.com","Artur",LocalDate.of(1978, 1, 18),null));
-        Details det2 = detailRepo.save(new Details(0,"serom@msn.com","Roman",LocalDate.of(1976, 2, 17),null));
+        Details det1 = new Details(0,"swederom@msn.com","Artur",LocalDate.of(1978, 1, 18),null);
+        Details det2 = new Details(0,"serom@msn.com","Roman",LocalDate.of(1976, 2, 17),null);
 
-        //Create some users
-        AppUser user1 = appUserRepo.save(new AppUser(0, "user3", "password3", LocalDate.now(), detailRepo.findById(1).get()));
-        AppUser user2 =appUserRepo.save(new AppUser(0, "user4", "password4", LocalDate.now(), detailRepo.findById(2).get()));
+        //Create some users and save with details due to 'Cascading'
+        AppUser user1 = new AppUser(0, "user3", "password3", LocalDate.now(), det1);
+        AppUser user2 = new AppUser(0, "user4", "password4", LocalDate.now(), det2);
+
+        //Using cascading enabled in AppUser that owns teh relationship
+        appUserRepo.save(user1);
+        appUserRepo.save(user2);
 
         //Create some books
         Book book1 = bookRepo.save(new Book(0, "abcd1234","java with Springboot",30, "Simon"));
@@ -57,7 +61,8 @@ public class AppCommandLineRunner implements CommandLineRunner {
         bookRepo.findByMaxLoanDaysLessThan(20).forEach(System.out::println);
 
         //Test BookLoanRepo methods
-       bookLoanrepo.save(new BookLoan(0,LocalDate.now().minusDays(2), LocalDate.now().minusDays(1), false, book1,appUserRepo.findById(1).get()));       bookLoanrepo.save(new BookLoan(0, LocalDate.now(), LocalDate.now().plusDays(10), false, book2, appUserRepo.findById(2).get()));
+       bookLoanrepo.save(new BookLoan(0,LocalDate.now().minusDays(2), LocalDate.now().minusDays(1), false, book1,user2));
+       bookLoanrepo.save(new BookLoan(0, LocalDate.now(), LocalDate.now().plusDays(10), false, book2, user2));
 
        bookLoanrepo.findByBorrowerId(1).forEach(System.out::println);
 
