@@ -1,6 +1,6 @@
 package se.lexicon.jpaworkshopus;
 
-import org.jspecify.annotations.NonNull;
+import org.springframework.lang.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -37,7 +37,7 @@ public class AppCommandLineRunner implements CommandLineRunner {
     }
 
     @Override
-    public void run(String @NonNull ... args) {
+    public void run(String... args) {
 
         //Details for the users
         Details det1 = new Details(0,"swederom@msn.com","Artur",LocalDate.of(1978, 1, 18),null);
