@@ -39,8 +39,8 @@ class RepositoryTests {
         Details det1 = new Details(0, "swederom@msn.com", "Artur", LocalDate.of(1978, 1, 18), null);
         Details det2 = new Details(0, "serom@msn.com", "Roman", LocalDate.of(1976, 2, 17), null);
 
-        user1 = appUserRepo.save(new AppUser(0, "user3", "password3", baseDate, det1));
-        user2 = appUserRepo.save(new AppUser(0, "user4", "password4", baseDate, det2));
+        //user1 = appUserRepo.save(new AppUser(0, "user3", "password3", baseDate, det1));
+        //user2 = appUserRepo.save(new AppUser(0, "user4", "password4", baseDate, det2));
 
         book1 = bookRepo.save(new Book("aaaa1111", 30, "java with Springboot"));
         book2 = bookRepo.save(new Book("abcd456", 10, "pure Java for devops"));
